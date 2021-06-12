@@ -1,0 +1,14 @@
+
+
+
+
+
+
+
+
+
+Backlog:
+Fix dash properly
+Stun vid blixtträff på spelare emellan bollar
+Ljudeffekter
+Tema
