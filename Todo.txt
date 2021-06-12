@@ -5,12 +5,15 @@
 
 
 
-
+Animate player when shooting ball
 
 Backlog:
-Make flying ball bigger
-Ball going up in the air too often
+Trail after ball
+Pixel aura effect for ballkick
+Goal pixelgraphics
+Better lighting effect
 Fix dash properly
 Stun vid blixtträff på spelare emellan bollar
 Ljudeffekter
 Tema
+Menu

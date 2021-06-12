@@ -38,6 +38,12 @@ public class PlayerController : MonoBehaviour
     float playerReach = 2;
     [SerializeField]
     float maxSpeed = 10;
+    [SerializeField]
+    Texture shootingTexture;
+    Material material;
+    Texture defaultTexture;
+    float textureChange = 0.2f;
+    float textureChangeTimer = 0;
 
 
     private float dashCountdownTimer = 0;
@@ -50,6 +56,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        material = GetComponentInChildren<Renderer>().material;
+        defaultTexture = material.mainTexture;
+        //material.mainTexture = (shootingTexture);
     }
 
     void Lean()
@@ -82,6 +91,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void TextureUpdate()
+    {
+        textureChangeTimer -= Time.deltaTime;
+        if(textureChangeTimer < 0)
+        {
+            material.mainTexture = defaultTexture;
+            textureChangeTimer = Mathf.Infinity;
+        }
+    }
+
+
     void DashCancel()
     {
         if(Vector3.Dot(rb.velocity, lastDashDirection) > 0)
@@ -105,9 +125,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0)){
-            Debug.Log("Joystick");
-        }
+        //if (Input.GetKeyDown(KeyCode.Joystick1Button0)){
+        //    Debug.Log("Joystick");
+        //}
 
         if (Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
@@ -136,6 +156,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        TextureUpdate();
 
     }
 
@@ -153,6 +174,8 @@ public class PlayerController : MonoBehaviour
             ball1.AddForce(forceApplied, ForceMode.VelocityChange);
             ball2.AddForce(forceApplied, ForceMode.VelocityChange);
             lighting.SetLightingPosAndSize(ball1, ball2);
+            material.mainTexture = shootingTexture;
+            textureChangeTimer = textureChange;
         }
         else if((rb.position - ball2.position).magnitude < playerReach)
         {
@@ -161,6 +184,8 @@ public class PlayerController : MonoBehaviour
             ball1.AddForce(forceApplied, ForceMode.VelocityChange);
             ball2.AddForce(forceApplied, ForceMode.VelocityChange);
             lighting.SetLightingPosAndSize(ball2, ball1);
+            material.mainTexture = shootingTexture;
+            textureChangeTimer = textureChange;
         }
     }
 
