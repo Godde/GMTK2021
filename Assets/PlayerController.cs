@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
         {
             directionalInput.x = Input.GetAxis("Horizontal");
             directionalInput.z = Input.GetAxis("Vertical");
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftControl) || Input.GetAxis("Fire1") > 0)
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
                 kickedThisFrame = true;
             }

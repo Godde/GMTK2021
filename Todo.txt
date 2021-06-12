@@ -8,6 +8,8 @@
 
 
 Backlog:
+Make flying ball bigger
+Ball going up in the air too often
 Fix dash properly
 Stun vid blixtträff på spelare emellan bollar
 Ljudeffekter
