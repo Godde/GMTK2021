@@ -10,6 +10,7 @@ public class BallScaler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localScale = new Vector3(transform.position.y + 1, transform.position.y + 1, transform.position.y + 1);
+        transform.localScale = new Vector3(transform.position.y/2 + 1, transform.position.y/2 + 1, transform.position.y/2 + 1);
+        transform.forward = Vector3.up;
     }
 }
