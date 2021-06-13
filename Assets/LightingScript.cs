@@ -20,7 +20,7 @@ public class LightingScript : MonoBehaviour
 
     public void SetLightingPosAndSize(Rigidbody ball1, Rigidbody ball2)
     {
-        Debug.Log("Activate lighting");
+        //Debug.Log("Activate lighting");
         gameObject.SetActive(true);
         transform.position = ball1.position + (ball2.position - ball1.position) / 2;
         transform.localScale = new Vector3(1, (ball2.position - ball1.position).magnitude, 1);
@@ -30,7 +30,7 @@ public class LightingScript : MonoBehaviour
 
     void LightingUpdate()
     {
-        Debug.Log("Timer " + lightingDurationTimer);
+        //Debug.Log("Timer " + lightingDurationTimer);
         lightingDurationTimer -= Time.deltaTime;
         if (lightingDurationTimer < 0)
         {
