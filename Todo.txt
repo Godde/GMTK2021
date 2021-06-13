@@ -7,6 +7,15 @@
 ScoreTracking
 Timer
 Change side on goal
+Sudden death
+
+
+Ljud:
+Kick/glow
+Goal
+Studs
+
+Menu
 
 Backlog:
 
@@ -19,5 +28,6 @@ Fix dash properly
 Stun vid blixtträff på spelare emellan bollar
 Ljudeffekter
 Tema
-Menu
+
+Goal grafik
 4 player mode.

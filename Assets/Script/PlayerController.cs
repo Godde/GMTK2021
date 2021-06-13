@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private float dashDurationTimer = 0;
     private Vector3 lastDashDirection;
     private Vector3 preDashVelocity;
+    private BallScript[] ballScripts;
 
 
     // Start is called before the first frame update
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         material = GetComponentInChildren<Renderer>().material;
         defaultTexture = material.mainTexture;
+        ballScripts = FindObjectsOfType<BallScript>();
         //material.mainTexture = (shootingTexture);
     }
 
@@ -172,9 +174,13 @@ public class PlayerController : MonoBehaviour
             Vector3 forceApplied = (rb.velocity).normalized * kickStrength;
             ball1.AddForce(forceApplied, ForceMode.VelocityChange);
             ball2.AddForce(forceApplied, ForceMode.VelocityChange);
-            lighting.SetLightingPosAndSize(ball1, ball2);
+            //lighting.SetLightingPosAndSize(ball1, ball2);
             material.mainTexture = shootingTexture;
             textureChangeTimer = textureChange;
+            foreach(BallScript ball in ballScripts)
+            {
+                ball.Fading();
+            }
         }
         else if((rb.position - ball2.position).magnitude < playerReach)
         {
@@ -182,9 +188,13 @@ public class PlayerController : MonoBehaviour
             Vector3 forceApplied = (rb.velocity).normalized * kickStrength;
             ball1.AddForce(forceApplied, ForceMode.VelocityChange);
             ball2.AddForce(forceApplied, ForceMode.VelocityChange);
-            lighting.SetLightingPosAndSize(ball2, ball1);
+            //lighting.SetLightingPosAndSize(ball2, ball1);
             material.mainTexture = shootingTexture;
             textureChangeTimer = textureChange;
+            foreach (BallScript ball in ballScripts)
+            {
+                ball.Fading();
+            }
         }
     }
 
