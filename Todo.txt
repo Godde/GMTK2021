@@ -4,12 +4,15 @@
 
 
 
-
-Animate player when shooting ball
+ScoreTracking
+Timer
+Change side on goal
 
 Backlog:
+
 Trail after ball
 Pixel aura effect for ballkick
+More drag for balls?
 Goal pixelgraphics
 Better lighting effect
 Fix dash properly
@@ -17,3 +20,4 @@ Stun vid blixtträff på spelare emellan bollar
 Ljudeffekter
 Tema
 Menu
+4 player mode.

@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int playerNumber = playerTwo ? 2 : 1;
+        transform.position = new Vector3(GamestateScript.Instance.PlayerStartPosition(playerNumber), transform.position.y, transform.position.z);
         rb = GetComponent<Rigidbody>();
         material = GetComponentInChildren<Renderer>().material;
         defaultTexture = material.mainTexture;
@@ -129,10 +131,7 @@ public class PlayerController : MonoBehaviour
         //    Debug.Log("Joystick");
         //}
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button3))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
-        }
+
         if (!playerTwo)
         {
             directionalInput.x = Input.GetAxis("Horizontal");
@@ -150,7 +149,7 @@ public class PlayerController : MonoBehaviour
         {
             directionalInput.x = Input.GetAxis("Horizontal2");
             directionalInput.z = Input.GetAxis("Vertical2");
-            if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.RightShift))
+            if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.RightControl))
             {
                 kickedThisFrame = true;
             }
@@ -205,6 +204,7 @@ public class PlayerController : MonoBehaviour
     {
         if (kickedThisFrame)
         {
+            
             Kick();
             kickedThisFrame = false;
         }
