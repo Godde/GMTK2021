@@ -45,12 +45,20 @@ public class PlayerController : MonoBehaviour
     float textureChange = 0.2f;
     float textureChangeTimer = 0;
 
+    [SerializeField]
+    AudioClip kickSound;
+    [SerializeField]
+    AudioClip kickMiss;
+
+
+
 
     private float dashCountdownTimer = 0;
     private float dashDurationTimer = 0;
     private Vector3 lastDashDirection;
     private Vector3 preDashVelocity;
     private BallScript[] ballScripts;
+
 
 
     // Start is called before the first frame update
@@ -138,11 +146,11 @@ public class PlayerController : MonoBehaviour
         {
             directionalInput.x = Input.GetAxis("Horizontal");
             directionalInput.z = Input.GetAxis("Vertical");
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.Joystick1Button0))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
                 kickedThisFrame = true;
             }
-            if (Input.GetKeyDown(KeyCode.K) || Input.GetAxis("Fire2") != 0)
+            if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.Joystick1Button1))
             {
                 Dash();
             }
@@ -151,9 +159,13 @@ public class PlayerController : MonoBehaviour
         {
             directionalInput.x = Input.GetAxis("Horizontal2");
             directionalInput.z = Input.GetAxis("Vertical2");
-            if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.RightControl))
+            if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.Joystick2Button0))
             {
                 kickedThisFrame = true;
+            }
+            if (Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.Joystick2Button1))
+            {
+                Dash();
             }
         }
 
@@ -177,6 +189,7 @@ public class PlayerController : MonoBehaviour
             //lighting.SetLightingPosAndSize(ball1, ball2);
             material.mainTexture = shootingTexture;
             textureChangeTimer = textureChange;
+            GamestateScript.Instance.PlayAudioClipWithSound(kickSound, 1);
             foreach(BallScript ball in ballScripts)
             {
                 ball.Fading();
@@ -191,10 +204,15 @@ public class PlayerController : MonoBehaviour
             //lighting.SetLightingPosAndSize(ball2, ball1);
             material.mainTexture = shootingTexture;
             textureChangeTimer = textureChange;
+            GamestateScript.Instance.PlayAudioClipWithSound(kickSound, 1);
             foreach (BallScript ball in ballScripts)
             {
                 ball.Fading();
             }
+        }
+        else
+        {
+            GamestateScript.Instance.PlayAudioClipWithSound(kickMiss, 1);
         }
     }
 
